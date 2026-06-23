@@ -69,4 +69,6 @@ variable "additional_managed_identities_access" {
 
 variable "sampling_percentage" {
   description = "Specifies the sampling percentage for Application Insights"
+  type        = number
+  default     = 100
 }
