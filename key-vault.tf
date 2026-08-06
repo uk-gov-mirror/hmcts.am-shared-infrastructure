@@ -1,5 +1,5 @@
 module "vault" {
-  source                               = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
+  source                               = "git@github.com:hmcts/cnp-module-key-vault?ref=DTSPO-31965/remove-jenkins-ptl-access"
   name                                 = join("-", [var.product, var.env])
   product                              = join("-", [var.product, "shared"])
   env                                  = var.env
@@ -11,6 +11,8 @@ module "vault" {
   create_managed_identity              = true
   common_tags                          = local.tags
   additional_managed_identities_access = var.additional_managed_identities_access
+
+  grant_preview_jenkins_access = var.env == "aat"
 }
 
 resource "azurerm_key_vault_secret" "appInsightsInstrumentationKey" {
